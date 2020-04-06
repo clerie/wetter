@@ -5,7 +5,7 @@
 	path = wetter/static/jquery
 	url = https://github.com/jquery/jquery.git
 [submodule "wetter/static/DataTables"]
-	path = wetter/static/DataTables
+	path = wetter/static/datatables
 	url = https://github.com/DataTables/DataTables.git
 [submodule "wetter/static/Leaflet"]
 	path = wetter/static/Leaflet

@@ -7,3 +7,6 @@
 [submodule "wetter/static/DataTables"]
 	path = wetter/static/DataTables
 	url = https://github.com/DataTables/DataTables.git
+[submodule "wetter/static/Leaflet"]
+	path = wetter/static/Leaflet
+	url = https://github.com/Leaflet/Leaflet.git

@@ -1,3 +1,6 @@
 [submodule "wetter/static/bootstrap"]
 	path = wetter/static/bootstrap
 	url = https://github.com/twbs/bootstrap.git
+[submodule "wetter/static/jquery"]
+	path = wetter/static/jquery
+	url = https://github.com/jquery/jquery.git

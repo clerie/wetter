@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="/static/datatables-1.10.20/css/datatables.min.css">
+<link rel="stylesheet" href="/static/datatables/media/css/dataTables.bootstrap4.min.css">
 {% endblock %}
 
 {% block header %}
@@ -32,7 +32,7 @@
 {% endblock %}
 
 {% block foot %}
-<script src="/static/datatables-1.10.20/js/datatables.min.js"></script>
+<script src="/static/datatables/media/js/dataTables.bootstrap4.min.js"></script>
 <script>
   $(document).ready(function() {
       $('#tableid').DataTable();

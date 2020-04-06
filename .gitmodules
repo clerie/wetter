@@ -13,3 +13,9 @@
 [submodule "wetter/static/moment"]
 	path = wetter/static/moment
 	url = https://github.com/moment/moment.git
+[submodule "wetter/static/bootstrap-4"]
+	path = wetter/static/bootstrap-4
+	url = https://github.com/tempusdominus/bootstrap-4.git
+[submodule "wetter/static/tempusdominus"]
+	path = wetter/static/tempusdominus
+	url = https://github.com/tempusdominus/bootstrap-4.git

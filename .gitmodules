@@ -10,3 +10,6 @@
 [submodule "wetter/static/Leaflet"]
 	path = wetter/static/Leaflet
 	url = https://github.com/Leaflet/Leaflet.git
+[submodule "wetter/static/moment"]
+	path = wetter/static/moment
+	url = https://github.com/moment/moment.git

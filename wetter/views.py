@@ -78,4 +78,7 @@ def dyn_stations_js():
     else:
         stations = Stations.query.order_by(Stations.dwd_id.asc()).all()
 
-    return render_template('dyn/stations.js', stations=stations)
+    r = make_response(render_template('dyn/stations.js', stations=stations))
+    r.headers['Content-Type'] = 'application/javascript; charset=utf-8'
+
+    return r

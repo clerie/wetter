@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/leaflet-1.6.0/leaflet.css">
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4">{{ station.name }}</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="card ">
+    <div class="embed-responsive embed-responsive-16by9">
+      <div class="clickoverlay embed-responsive-item">
+        <p class="text-center">Klicken um die Karte freizuschalten</p>
+      </div>
+      <div id="mapid" class="embed-responsive-item"></div>
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Ort</h5>
+        <p class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Bundesland</h5>
+        <p class="card-text"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">DWD ID</h5>
+         <p class="card-text">{{ station.dwd_id }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="list-group list-group-horizontal-md text-center">
+    <a href="/station/{{ station.dwd_id }}/export/" class="list-group-item flex-fill active">Exportieren</a>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Meta</h5>
+    </div>
+    <div class="list-group list-group-flush">
+      <a href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_{{ station.dwd_id }}_akt.zip" class="list-group-item" target="_blank">Aktueller Source vom DWD</a>
+      <div class="list-group-item">Letztes Update: {{ station.dwd_last_update }}</div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block foot %}
+<script src="/static/leaflet-1.6.0/leaflet.js"></script>
+<script>
+  var mymap = L.map('mapid').setView([52, 10], 6);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+  }).addTo(mymap);
+</script>
+<script src="/dyn/stations.js?s={{ station.dwd_id }}"></script>
+{% endblock %}

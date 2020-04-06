@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/tempusdominus-5.1.3/css/tempusdominus.min.css">
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4">{{ station.name }}</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+  <h2>
+    Export
+    <small class="text-muted">Zeitraum wählen</small>
+  </h2>
+  <form action="/station/{{ station.dwd_id }}/export/target/">
+  <div class="row">
+      <div class="col-sm-6">
+          <div class="form-group">
+              <label for="datetimepicker-from">von</label>
+              <div class="input-group date" id="datetimepicker-from" data-target-input="nearest">
+                  <input type="text" name="from" class="form-control datetimepicker-input" data-target="#datetimepicker-from" data-target="#datetimepicker-from" data-toggle="datetimepicker" placeholder="yyyy-mm-dd">
+                  <div class="input-group-append" data-target="#datetimepicker-from" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-6">
+          <div class="form-group">
+              <label for="datetimepicker-to">bis</label>
+              <div class="input-group date" id="datetimepicker-to" data-target-input="nearest">
+                  <input type="text" name="to" class="form-control datetimepicker-input" data-target="#datetimepicker-to" data-target="#datetimepicker-to" data-toggle="datetimepicker" placeholder="yyyy-mm-dd">
+                  <div class="input-group-append" data-target="#datetimepicker-to" data-toggle="datetimepicker">
+                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Weiter</button>
+  </form>
+<section>
+{% endblock %}
+
+{% block foot %}
+<script src="/static/moment-2.24.0/js/moment.js"></script>
+<script src="/static/tempusdominus-5.1.3/js/tempusdominus.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker-from').datetimepicker({
+          format: "YYYY-MM-DD"
+        });
+        $('#datetimepicker-to').datetimepicker({
+          format: "YYYY-MM-DD"
+        });
+    });
+</script>
+{% endblock %}

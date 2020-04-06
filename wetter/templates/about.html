@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1 class="display-4">Über Wetter</h1>
+{% endblock%}
+
+{% block content %}
+<section>
+  <p>Wettervorhersagen gibt es mittlerweile wie Sand am Meer und es ist ein riesiges Geschäft darum gewachsen. Viel spannender jedoch ist, was die wirklichen Messergebnisse in der Vergangenheit so waren. Da diese Datenbestände nicht so einfach zu finden und für viele viel zu kompliziert zu verwenden sind, wurde diese Website erschaffen.</p>
+</section>
+<section>
+  <h2>Quellen</h2>
+  <p>Der Datenbestand von Wetter stammt vollständig aus dem Open-Data Programm des Deutschen Wetterdienstes. Dort laden wir regelmäßig direkt die Messergebnisse herunter und pflegen diese in unser System ein. Nach und nach aktualisiert der DWD einige Messergenisse duch Fehlerkorrekturverfahren. Auch diese pflegen wir im Laufe der Zeit nach.</p>
+</section>
+<section>
+  <h2>Lizenz</h2>
+  <p></p>
+</section>
+<section>
+  <h2>Nutzungsbedingungen</h2>
+  <p>Diese Website darf von jedem frei verwendet und die heruntergeladenen Daten gemäß ihrer Lizenz verwendet werden.</p>
+  <p>Zweck dieser Website ist, Nutzern, die gelegentlich Zugang zu zuverlässigen Wetterdaten benötigen, entsprechende Daten bereitzustellen. Sie stellt explizit <strong>keine API</strong> dar und demensprechend sind automatisierte Anfragen verboten. Solltest du diese Daten für dein eigenes Projekt benötigen, so <a href="https://github.com/clerie/wetter">scrape sie dir doch einfach selber</a>.</p>
+</section>
+<section>
+  <h2>Meta</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Software</h5>
+          <p class="card-text">Die Software hinter dieser Website nennt sich Wetter.</p>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="https://github.com/clerie/wetter" class="list-group-item">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Entwickler</h5>
+          <p class="card-text">Die Entwickler hinter Wetter.</p>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="https://clerie.de/" class="list-group-item">Clemens 'clerie' Riese</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Unterstützen</h5>
+          <p class="card-text">So ein Großprojekt wird nie fertig, um etwas Unterstützung würden wir uns deshalb sehr freuen.</p>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="https://github.com/clerie/wetter" class="list-group-item">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

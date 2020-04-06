@@ -1,0 +1,3 @@
+STATIONS_ID; MESS_DATUM; QN_3;  FX;  FM;QN_4; RSK; RSKF; SDK; SHK_TAG;  NM; VPM;  PM; TMK; UPM; TXK; TNK; TGK; eor
+{% for c in climate %}{{ station.dwd_id }}; {{ c.date }}; {{ c.qn_3 }}; {{ c.fx}}; {{ c.fm }}; {{ c.qn_4 }}; {{ c.rsk }}; {{ c.rskf }}; {{ c.sdk }}; {{ c.shk_tag }}; {{ c.nm }}; {{ c.vpm }}; {{ c.pm }}; {{ c.tmk }}; {{ c.upm }}; {{ c.txk }}; {{ c.tnk }}; {{ c.tgk }}; eor
+{% endfor %}

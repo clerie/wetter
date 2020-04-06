@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap-4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/wetter/css/wetter.css">
+    {% block head %}{% endblock %}
+
+    <title>Wetter</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">Wetter</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/station/">Stationen</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">Über</a>
+            </li>
+          </ul>
+          <!--<a href="#" class="btn btn-primary"></a>-->
+        </div>
+      </div>
+    </nav>
+    <header>
+      <div class="container">
+        {% block header %}
+        {% endblock %}
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <a href="/about/">Über</a>
+        <a href="/station/">Stationen</a>
+        <a href="https://blog.clerie.de/impressum" target="_blank">Impressum</a>
+        <a href="https://blog.clerie.de/datenschutz" target="_blank">Datenschutz</a>
+        <a href="https://github.com/clerie/wetter" target="_blank">Quellcode auf GitHub</a>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <script src="/static/jquery-3.4.1/js/jquery.min.js"></script>
+    <script src="/static/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/wetter/js/wetter.js"></script>
+    {% block foot %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,4 @@
+#!/usr/bin/env python3
+
+db = {}
+db['uri'] = "postgresql://user:password@host:5432/database"

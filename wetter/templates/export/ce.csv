@@ -1,0 +1,9 @@
+Datum,Temperatur °C
+,Luftdruck hPa
+,Niederschlag mm
+,
+{% for c in climate %}{{ c.date }},{{ c.tmk }}
+,{{ c.pm }}
+,{{ c.rsk }}
+,
+{% endfor %}

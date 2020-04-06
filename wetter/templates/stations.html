@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/datatables-1.10.20/css/datatables.min.css">
+{% endblock %}
+
+{% block header %}
+<h1 class="display-4">Stationen</h1>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="table-responsive">
+    <table class="table table-hover" id="tableid">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for station in stations %}
+        <tr>
+          <td>{{ station.name }}</td>
+          <td><a href="/station/{{ station.dwd_id }}/">Mehr</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+{% block foot %}
+<script src="/static/datatables-1.10.20/js/datatables.min.js"></script>
+<script>
+  $(document).ready(function() {
+      $('#tableid').DataTable();
+  } );
+</script>
+{% endblock %}

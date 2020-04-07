@@ -3,7 +3,7 @@
 from wetter import app
 from wetter.models import Stations, Climate
 from wetter.utils import fromisoformat
-from flask import request, make_response, render_template
+from flask import request, make_response, render_template, jsonify
 from datetime import datetime
 
 @app.route('/')
@@ -69,17 +69,23 @@ def export_target_dwd_txt_render(dwd_id):
 
     return r
 
-@app.route('/dyn/stations.js')
-def dyn_stations_js():
+@app.route('/api/station')
+def api_station():
     s = request.args.get('s')
 
     if s:
         station = Stations.query.filter_by(dwd_id=s).first_or_404()
         stations = [station]
     else:
-        stations = Stations.query.order_by(Stations.dwd_id.asc()).all()
+        stations = Stations.query.order_by(Stations.lon.asc()).order_by(Stations.lat.desc()).all()
 
-    r = make_response(render_template('dyn/stations.js', stations=stations))
-    r.headers['Content-Type'] = 'application/javascript; charset=utf-8'
+    out = []
+    for s in stations:
+        out.append({
+            "name": s.name,
+            "lat": s.lat,
+            "lon": s.lon,
+            "dwd_id": s.dwd_id,
+        })
 
-    return r
+    return jsonify(out)

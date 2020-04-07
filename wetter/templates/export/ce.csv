@@ -1,9 +1,9 @@
-Datum,Temperatur °C
-,Luftdruck hPa
-,Niederschlag mm
-,
-{% for c in climate %}{{ c.date }},{{ c.tmk }}
-,{{ c.pm }}
-,{{ c.rsk }}
-,
+Datum     ,Temperatur °C
+          ,Niederschlag mm
+          ,Windgeschwindigkeit m/s
+          ,Sonnenscheindauer
+{% for c in climate %}{{ c.date }},{{ c.tmk }} °C
+          ,{{ c.rsk }} mm
+          ,{{ c.fm }} m/s
+          ,{{ c.sdk }} h
 {% endfor %}

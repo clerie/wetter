@@ -1,6 +1,12 @@
 # Wetter custom
 wetter/config/db.py
 
+# JavaScript modules
+node_modules
+
+# JavaScript output
+wetter/static/js
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

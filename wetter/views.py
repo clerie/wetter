@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from wetter import app
+from wetter import app, excel
 from wetter.models import Stations, Climate
 from wetter.utils import fromisoformat
 from flask import request, make_response, render_template, jsonify
@@ -41,19 +41,41 @@ def export_target(dwd_id):
 
     return render_template('target.html', station=station, fr=fr.isoformat(), to=to.isoformat())
 
-@app.route('/station/<dwd_id>/export/target/ce.csv/')
-def export_target_ce_csv_render(dwd_id):
+def export_target_ce(request, dwd_id):
     fr = fromisoformat(request.args.get('from'))
     to = fromisoformat(request.args.get('to'))
 
     station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
     climate = Climate.query.filter_by(station=station.id).filter(Climate.date >= fr.isoformat(), Climate.date <= to.isoformat()).order_by(Climate.date.asc())
 
-    r = make_response(render_template('export/ce.csv', climate=climate))
-    r.headers['Content-Type'] = 'text/csv; charset=utf-8'
-    r.headers['Content-Disposition'] = 'attachment; filename="wetter_' +station.dwd_id +'_' + fr.isoformat() + '_' + to.isoformat() +'_ce.csv'
+    out = [
+        ["Datum", "Temperatur in °C"],
+        [None, "Niederschlagsmenge in mm"],
+        [None, "Windgeschwindigkeit in m/s"],
+        [None, "Sonnenscheindauer in h"],
+    ]
 
-    return r
+    for c in climate:
+        out.append([c.date.isoformat(), str(c.tmk) + " °C"])
+        out.append([None, str(c.rsk) + " mm"])
+        out.append([None, str(c.fm) + " m/s"])
+        out.append([None, str(c.sdk) + " h"])
+
+    filename = 'wetter_' + station.dwd_id +'_' + fr.isoformat() + '_' + to.isoformat() +'_ce'
+
+    return out, filename
+
+@app.route('/station/<dwd_id>/export/target/ce.csv/')
+def export_target_ce_csv_render(dwd_id):
+    out, filename = export_target_ce(request, dwd_id)
+
+    return excel.make_response_from_array(out, 'csv', file_name=filename)
+
+@app.route('/station/<dwd_id>/export/target/ce.xlsx/')
+def export_target_ce_xlsx_render(dwd_id):
+    out, filename = export_target_ce(request, dwd_id)
+
+    return excel.make_response_from_array(out, 'xlsx', file_name=filename)
 
 @app.route('/station/<dwd_id>/export/target/dwd.txt/')
 def export_target_dwd_txt_render(dwd_id):
@@ -65,7 +87,7 @@ def export_target_dwd_txt_render(dwd_id):
 
     r = make_response(render_template('export/dwd.txt', station=station, climate=climate))
     r.headers['Content-Type'] = 'text/txt; charset=utf-8'
-    r.headers['Content-Disposition'] = 'attachment; filename="wetter_' + station.dwd_id +'_' + fr.isoformat() + '_' + to.isoformat() +'_dwd.txt'
+    r.headers['Content-Disposition'] = 'attachment; filename="wetter_' + station.dwd_id +'_' + fr.isoformat() + '_' + to.isoformat() +'_dwd.txt"'
 
     return r
 

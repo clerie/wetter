@@ -69,7 +69,7 @@ def export_target_dwd_txt_render(dwd_id):
 
     return r
 
-@app.route('/api/station')
+@app.route('/api/station/')
 def api_station():
     s = request.args.get('s')
 

@@ -77,6 +77,35 @@ def export_target_ce_xlsx_render(dwd_id):
 
     return excel.make_response_from_array(out, 'xlsx', file_name=filename)
 
+def export_target_dwd(request, dwd_id):
+    fr = fromisoformat(request.args.get('from'))
+    to = fromisoformat(request.args.get('to'))
+
+    station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
+    climate = Climate.query.filter_by(station=station.id).filter(Climate.date >= fr.isoformat(), Climate.date <= to.isoformat()).order_by(Climate.date.asc())
+
+    out = []
+    out.append(["STATIONS_ID", "MESS_DATUM", "QN_3",  "FX",  "FM", "QN_4", "RSK", "RSKF", "SDK", "SHK_TAG", "NM", "VPM",  "PM", "TMK", "UPM", "TXK", "TNK", "TGK", "eor"])
+
+    for c in climate:
+        out.append([ station.dwd_id, c.date.isoformat(), c.qn_3, c.fx, c.fm, c.qn_4, c.rsk, c.rskf, c.sdk, c.shk_tag, c.nm, c.vpm, c.pm, c.tmk, c.upm, c.txk, c.tnk, c.tgk, "eor"])
+
+    filename = 'wetter_' + station.dwd_id +'_' + fr.isoformat() + '_' + to.isoformat() +'_dwd'
+
+    return out, filename
+
+@app.route('/station/<dwd_id>/export/target/dwd.csv/')
+def export_target_dwd_csv_render(dwd_id):
+    out, filename = export_target_dwd(request, dwd_id)
+
+    return excel.make_response_from_array(out, 'csv', file_name=filename)
+
+@app.route('/station/<dwd_id>/export/target/dwd.xlsx/')
+def export_target_dwd_xlsx_render(dwd_id):
+    out, filename = export_target_dwd(request, dwd_id)
+
+    return excel.make_response_from_array(out, 'xlsx', file_name=filename)
+
 @app.route('/station/<dwd_id>/export/target/dwd.txt/')
 def export_target_dwd_txt_render(dwd_id):
     fr = fromisoformat(request.args.get('from'))

@@ -74,6 +74,11 @@ footer a {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Leaflet fixes*/
 .leaflet-top, .leaflet-bottom {
   z-index: 900 !important;
+}
+
+.leaflet-container a.btn {
+  color: #fff;
 }

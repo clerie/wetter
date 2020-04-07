@@ -82,10 +82,10 @@ def api_station():
     out = []
     for s in stations:
         out.append({
-            "name": s.name,
-            "lat": s.lat,
-            "lon": s.lon,
-            "dwd_id": s.dwd_id,
+            "name": str(s.name),
+            "lat": float(s.lat),
+            "lon": float(s.lon),
+            "dwd_id": str(s.dwd_id),
         })
 
     return jsonify(out)

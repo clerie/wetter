@@ -2,9 +2,10 @@
 
 from wetter import app, excel
 from wetter.models import Stations, Climate
-from wetter.utils import fromisoformat
-from flask import request, make_response, render_template, jsonify
+from wetter.utils import fromisoformat, toisoformat
+from flask import request, make_response, render_template, redirect, jsonify
 from datetime import datetime
+from urllib.parse import urlencode
 
 @app.route('/')
 def index():
@@ -28,18 +29,36 @@ def station(dwd_id):
 
 @app.route('/station/<dwd_id>/export/')
 def export(dwd_id):
+    fr = toisoformat(request.args.get('from'))
+    to = toisoformat(request.args.get('to'))
+    e = request.args.get('e')
+
     station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
 
-    return render_template('export.html', station=station)
+    return render_template('export.html', e=e, station=station, fr=fr, to=to)
 
 @app.route('/station/<dwd_id>/export/target/')
 def export_target(dwd_id):
-    fr = fromisoformat(request.args.get('from'))
-    to = fromisoformat(request.args.get('to'))
+    fr = toisoformat(request.args.get('from'))
+    to = toisoformat(request.args.get('to'))
 
-    station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
+    if fr and to:
+        station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
 
-    return render_template('target.html', station=station, fr=fr.isoformat(), to=to.isoformat())
+        return render_template('target.html', station=station, fr=fr, to=to)
+
+    else:
+        qs = {
+            "e": "empty",
+        }
+
+        if fr:
+            qs["from"] = fr
+
+        if to:
+            qs["to"] = to
+
+        return redirect('/station/' + dwd_id + '/export/?' + urlencode(qs), code=302)
 
 def export_target_ce(request, dwd_id):
     fr = fromisoformat(request.args.get('from'))

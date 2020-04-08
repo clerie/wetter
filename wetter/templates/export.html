@@ -9,6 +9,11 @@
 
 {% block content %}
 <section>
+  {% if e == "empty" %}
+  <div class="alert alert-danger" role="alert">
+    Ein oder mehrere Eingabefelder sind leer oder haben das falsche Format.
+  </div>
+  {% endif %}
   <h2>
     Export
     <small class="text-muted">Zeitraum wählen</small>
@@ -18,23 +23,13 @@
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-from">von</label>
-              <div class="input-group" id="datetimepicker-from">
-                  <input type="text" name="from" class="form-control" placeholder="yyyy-mm-dd">
-                  <div class="input-group-append">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-              </div>
+              <input type="date" value="{{ fr }}" name="from" class="form-control" id="datetimepicker-from" required>
           </div>
       </div>
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-to">bis</label>
-              <div class="input-group" id="datetimepicker-to">
-                  <input type="text" name="to" class="form-control" placeholder="yyyy-mm-dd">
-                  <div class="input-group-append">
-                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-              </div>
+              <input type="date" value="{{ to }}" name="to" class="form-control" id="datetimepicker-to" required>
           </div>
       </div>
   </div>

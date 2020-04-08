@@ -5,8 +5,11 @@ wetter/config/db.py
 node_modules
 
 # Bundle output
-wetter/static/js
-wetter/static/css
+wetter/static/*.js
+wetter/static/*.js.map
+wetter/static/*.css
+wetter/static/*.css.map
+wetter/static/images
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

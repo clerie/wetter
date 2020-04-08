@@ -9,7 +9,7 @@ const production = process.env.NODE_ENV === "production";
 const config = {
   input: "wetter/static/wetter/js/wetter.js",
   output: {
-    dir: "wetter/static",
+    dir: "wetter/static/bundle",
     format: "iife",
     sourcemap: !production
   },
@@ -18,13 +18,13 @@ const config = {
       targets: [
         {
           src: "node_modules/leaflet/dist/images/*",
-          dest: "wetter/static/images"
+          dest: "wetter/static/bundle/images"
         }
       ]
     }),
     css({
-      output: "wetter/static/bundle.css",
-      outFile: "wetter/static/bundle.css",
+      output: "wetter/static/bundle/bundle.css",
+      outFile: "wetter/static/bundle/bundle.css",
       outputStyle: production ? "compressed" : "expanded",
       sourceMap: !production
     }),

@@ -22,7 +22,7 @@
         {% for station in stations %}
         <tr>
           <td>{{ station.name }}</td>
-          <td><a href="/station/{{ station.dwd_id }}/">Mehr</td>
+          <td><a href="/station/{{ station.dwd_id }}/export/" class="btn btn-secondary">Export</a> <a href="/station/{{ station.dwd_id }}/" class="btn btn-primary">Info</a></td>
         </tr>
         {% endfor %}
       </tbody>

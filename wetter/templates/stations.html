@@ -23,7 +23,7 @@
         <tr>
           <td>{{ station.name }}</td>
           <td>{{ station.state }}</td>
-          <td><a href="/station/{{ station.dwd_id }}/export/" class="btn btn-secondary">Export</a> <a href="/station/{{ station.dwd_id }}/" class="btn btn-primary">Info</a></td>
+          <td><div class="float-right"><a href="/station/{{ station.dwd_id }}/export/" class="btn btn-outline-primary">Export</a> <a href="/station/{{ station.dwd_id }}/" class="btn btn-primary">Info</a></div></td>
         </tr>
         {% endfor %}
       </tbody>

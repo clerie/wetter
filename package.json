@@ -4,7 +4,9 @@
   "description": "Wettervorhersagen gibt es mittlerweile wie Sand am Meer und es ist ein riesiges Geschäft darum gewachsen. Viel spannender jedoch ist, was die wirklichen Messergebnisse in der Vergangenheit so waren. Da diese Datenbestände nicht so einfach zu finden und für viele viel zu kompliziert zu verwenden sind, wurde diese Website erschaffen.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "./node_modules/.bin/rollup -c"
+    "build": "./node_modules/.bin/rollup -c",
+    "build:production": "NODE_ENV=production npm run build --silent",
+    "postinstall": "npm run build --silent"
   },
   "repository": {
     "type": "git",

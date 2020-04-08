@@ -156,6 +156,7 @@ def api_station():
             "lat": float(s.lat),
             "lon": float(s.lon),
             "dwd_id": str(s.dwd_id),
+            "state": str(s.state),
         })
 
     return jsonify(out)

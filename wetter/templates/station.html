@@ -20,14 +20,28 @@
   <div class="card-group">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Ort</h5>
-        <p class="card-text"></p>
+        <h5 class="card-title">Latitude</h5>
+        <p class="card-text">{{ station.lat }}°</p>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
+        <h5 class="card-title">Longitude</h5>
+        <p class="card-text">{{ station.lon}}°</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Höhe über nn</h5>
+         <p class="card-text">{{ station.sea_level }}m</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      <div class="card-body">
         <h5 class="card-title">Bundesland</h5>
-        <p class="card-text"></p>
+        <p class="card-text">{{ station.state }}</p>
       </div>
     </div>
     <div class="card">

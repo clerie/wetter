@@ -45,7 +45,7 @@
       mymap.setView([stations[0]["lat"], stations[0]["lon"]], 6);
     }
     stations.forEach((station, i, j) => {
-      L.marker([station["lat"], station["lon"]]).addTo(mymap).bindPopup("<h3>" + station["name"] + "</h3><a href=\"/station/" + station["dwd_id"] + "/export/\" class=\"btn btn-secondary\">Export</a> <a href=\"/station/" + station["dwd_id"] + "/\" class=\"btn btn-primary\">Info</a>");
+      L.marker([station["lat"], station["lon"]]).addTo(mymap).bindPopup("<h3>" + station["name"] + "</h3><p>" + station["state"] + "</p><a href=\"/station/" + station["dwd_id"] + "/export/\" class=\"btn btn-secondary\">Export</a> <a href=\"/station/" + station["dwd_id"] + "/\" class=\"btn btn-primary\">Info</a>");
     })
   });
 </script>

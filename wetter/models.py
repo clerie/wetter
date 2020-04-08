@@ -10,6 +10,8 @@ class Stations(db.Model):
     lon = db.Column(db.Integer)
     dwd_id = db.Column(db.String)
     dwd_last_update = db.Column(db.TIMESTAMP)
+    state = db.Column(db.String)
+    sea_level = db.Column(db.Integer)
 
 class Climate(db.Model):
     __tablename__ = 'climate'

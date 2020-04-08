@@ -17,7 +17,7 @@ def about():
 
 @app.route('/station/')
 def stations():
-    stations = Stations.query.order_by(Stations.dwd_id.asc()).all()
+    stations = Stations.query.order_by(Stations.name.asc()).order_by(Stations.state.asc()).all()
 
     return render_template('stations.html', stations=stations)
 

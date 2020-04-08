@@ -16,6 +16,8 @@ import "tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.css";
 
 import "../css/wetter.css";
 
+window.$ = $;
+
 // Entfernen des Clickoverlay wenn drauf geklickt wurde, #28
 $(".clickoverlay").on("click", function () {
   $(this).remove();

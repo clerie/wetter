@@ -4,8 +4,9 @@ wetter/config/db.py
 # JavaScript modules
 node_modules
 
-# JavaScript output
+# Bundle output
 wetter/static/js
+wetter/static/css
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

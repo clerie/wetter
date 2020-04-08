@@ -1,6 +1,12 @@
 # Wetter custom
 wetter/config/db.py
 
+# JavaScript modules
+node_modules
+
+# Bundle output
+wetter/static/bundle
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -28,11 +28,9 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "datatables": "^1.10.18",
+    "datatables.net-bs4": "^1.10.20",
     "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
-    "moment": "^2.24.0",
-    "tempusdominus-bootstrap-4": "^5.1.2",
-    "tempusdominus-core": "^5.0.3"
+    "popper.js": "^1.16.1"
   }
 }

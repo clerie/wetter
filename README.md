@@ -24,6 +24,8 @@ Starten und updaten lässt sich die Flask-App folgendermaßen:
 ```
 cd wetter/
 git pull
+npm i
+npm run build:production
 source ENV/bin/activate
 pip install -r requirements.txt
 uwsgi wsgi.ini

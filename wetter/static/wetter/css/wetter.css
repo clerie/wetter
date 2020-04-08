@@ -79,6 +79,6 @@ footer a {
   z-index: 900 !important;
 }
 
-.leaflet-container a.btn {
+.leaflet-container a.btn:not([class*="btn-outline-"]) {
   color: #fff;
 }

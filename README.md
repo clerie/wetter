@@ -1,21 +1,31 @@
 # Wetter
 Wettervorhersagen gibt es mittlerweile wie Sand am Meer und es ist ein riesiges Geschäft darum gewachsen. Viel spannender jedoch ist, was die wirklichen Messergebnisse in der Vergangenheit so waren. Da diese Datenbestände nicht so einfach zu finden und für viele viel zu kompliziert zu verwenden sind, wurde diese Website erschaffen.
 
-## Quellen
-Der Datenbestand von Wetter stammt vollständig aus dem Open-Data Programm des Deutschen Wetterdienstes. Dort laden wir regelmäßig direkt die Messergebnisse herunter und pflegen diese in unser System ein. Nach und nach aktualisiert der DWD einige Messergenisse duch Fehlerkorrekturverfahren. Auch diese pflegen wir im Laufe der Zeit nach.
+Diese Flask-App ist ein Frontend für den [DWD Scraper](https://github.com/clerie/dwd-scraper).
 
-Alles zu diesem Datensatz findet sich unter https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/
+## Deployment
+Es wird Lesezugriff auf die Datenbank benötigt, die der DWD Scraper befüllt.
+- [DWD Scraper](https://github.com/clerie/dwd-scraper)
 
-Dieses Projekt benutzt die selben Bezeichner, wie die Datensätze selber. Eine Dokumentation der Bezichner findet sich unter https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/BESCHREIBUNG_obsgermany_climate_daily_kl_recent_de.pdf
+Nur ein Mal zu initialisieren:
+```
+git clone https://github.com/clerie/wetter.git
+cd wetter/
+virtualenv -p python3 ENV
+cp wetter/config/db.py.example wetter/config/db.py
+cd ..
+```
 
-## Struktur
-Dieses Projekt ist in 3 Teile geteilt:
+Passe nun `wetter/config/db.py` mit deinen Datenbankzugangsdaten an.
 
-### Importer
-Der Scraper besteht aus ein paar gruseligen Python-Skripten. Diese liegen im Verzeichnis `scraper/`.
+Bei Bedarf musst du noch die `wsgi.ini` anpassen.
 
-### Datenbank
-Alles zur Datenbank findet sich im Unterverzeichnis `db/`.
-
-### Frontend
-Das Frontend ist in Flask gebaut. Der Source dazu findet sich unter `wetter/`.
+Starten und updaten lässt sich die Flask-App folgendermaßen:
+```
+cd wetter/
+git pull
+source ENV/bin/activate
+pip install -r requirements.txt
+uwsgi wsgi.ini
+deactivate
+```

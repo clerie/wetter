@@ -13,6 +13,10 @@
   <div class="alert alert-danger" role="alert">
     Ein oder mehrere Eingabefelder sind leer oder haben das falsche Format.
   </div>
+  {% elif e == "end-before-start" %}
+  <div class="alert alert-danger" role="alert">
+    Das Enddatum darf nicht vor dem Startdatum liegen.
+  </div>
   {% endif %}
   <h2>
     Export
@@ -23,15 +27,25 @@
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-from">von</label>
-              <input type="date" value="{{ fr }}" name="from" class="form-control" id="datetimepicker-from" required>
+              <input type="date" value="{{ fr }}" name="from" class="form-control" id="datetimepicker-from" required max="{{ today }}">
           </div>
       </div>
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-to">bis</label>
-              <input type="date" value="{{ to }}" name="to" class="form-control" id="datetimepicker-to" required>
+              <input type="date" value="{{ to }}" name="to" class="form-control" id="datetimepicker-to" required max="{{ today }}">
           </div>
       </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" name="workdays-only" value="true" class="custom-control-input" id="workdays-only">
+          <label class="custom-control-label" for="workdays-only">Nur Montag bis Freitag</label>
+        </div>
+      </div>
+    </div>
   </div>
   <button type="submit" class="btn btn-primary">Weiter</button>
   </form>
@@ -39,4 +53,12 @@
 {% endblock %}
 
 {% block foot %}
+<script>
+$("#datetimepicker-from").change(() => {
+  $("#datetimepicker-to").attr('min', $("#datetimepicker-from").val());
+});
+$("#datetimepicker-to").change(() => {
+  $("#datetimepicker-from").attr('max', $("#datetimepicker-to").val());
+});
+</script>
 {% endblock %}

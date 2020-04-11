@@ -2,7 +2,7 @@
 
 from wetter import app, excel
 from wetter.models import Stations, Climate
-from wetter.utils import fromisoformat, toisoformat
+from wetter.utils import fromisoformat, toisoformat, strtobool
 from flask import request, make_response, render_template, redirect, jsonify
 from datetime import datetime
 from urllib.parse import urlencode
@@ -29,34 +29,44 @@ def station(dwd_id):
 
 @app.route('/station/<dwd_id>/export/')
 def export(dwd_id):
+    today = datetime.today().date().isoformat()
+
     fr = toisoformat(request.args.get('from'))
     to = toisoformat(request.args.get('to'))
     e = request.args.get('e')
 
+    if fr and to and not fr <= to:
+        fr, to = "", ""
+
     station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
 
-    return render_template('export.html', e=e, station=station, fr=fr, to=to)
+    return render_template('export.html', e=e, station=station, today=today, fr=fr, to=to)
 
 @app.route('/station/<dwd_id>/export/target/')
 def export_target(dwd_id):
     fr = toisoformat(request.args.get('from'))
     to = toisoformat(request.args.get('to'))
+    workdays_only = strtobool(request.args.get('workdays-only'))
 
-    if fr and to:
+    if fr and to and fr <= to:
         station = Stations.query.filter_by(dwd_id=dwd_id).first_or_404()
 
-        return render_template('target.html', station=station, fr=fr, to=to)
+        return render_template('target.html', station=station, fr=fr, to=to, workdays_only=workdays_only)
 
     else:
-        qs = {
-            "e": "empty",
-        }
+        qs = {}
 
-        if fr:
-            qs["from"] = fr
+        if not fr <= to:
+            qs["e"] = "end-before-start"
 
-        if to:
-            qs["to"] = to
+        else:
+            qs["e"] =  "empty"
+
+            if fr:
+                qs["from"] = fr
+
+            if to:
+                qs["to"] = to
 
         return redirect('/station/' + dwd_id + '/export/?' + urlencode(qs), code=302)
 

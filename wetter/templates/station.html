@@ -9,6 +9,11 @@
 
 {% block content %}
 <section>
+  {% if station.climate_date_old() %}
+  <div class="alert alert-danger" role="alert">
+    Die letzten Messwerte zu dieser Station sind von {{ station.climate_date_range()["max"] }}.
+  </div>
+  {% endif %}
   <div class="card ">
     <div class="embed-responsive embed-responsive-16by9">
       <div class="clickoverlay embed-responsive-item">
@@ -51,7 +56,7 @@
       </div>
     </div>
   </div>
-  
+
   <a href="/station/{{ station.dwd_id }}/export/" class="btn btn-lg btn-block btn-outline-primary">Exportieren</a>
 
   <div class="card">
@@ -60,6 +65,7 @@
     </div>
     <div class="list-group list-group-flush">
       <a href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/tageswerte_KL_{{ station.dwd_id }}_akt.zip" class="list-group-item" target="_blank">Aktueller Source vom DWD</a>
+      <div class="list-group-item">Bereich Messdaten: {{ station.climate_date_range()["min"] }} - {{ station.climate_date_range()["max"] }}</div>
       <div class="list-group-item">Letztes Update: {{ station.dwd_last_update }}</div>
     </div>
   </div>

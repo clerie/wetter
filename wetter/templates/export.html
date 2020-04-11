@@ -27,13 +27,13 @@
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-from">von</label>
-              <input type="date" value="{{ fr }}" name="from" class="form-control" id="datetimepicker-from" required max="{{ today }}">
+              <input type="date" value="{{ fr }}" name="from" class="form-control" id="datetimepicker-from" required min="{{ station.climate_date_range()["min"] }}" max="{{ station.climate_date_range()["max"] }}">
           </div>
       </div>
       <div class="col-sm-6">
           <div class="form-group">
               <label for="datetimepicker-to">bis</label>
-              <input type="date" value="{{ to }}" name="to" class="form-control" id="datetimepicker-to" required max="{{ today }}">
+              <input type="date" value="{{ to }}" name="to" class="form-control" id="datetimepicker-to" required min="{{ station.climate_date_range()["min"] }}" max="{{ station.climate_date_range()["max"] }}">
           </div>
       </div>
   </div>
